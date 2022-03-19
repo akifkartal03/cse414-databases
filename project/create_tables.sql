@@ -1,7 +1,7 @@
 --create tables
 -- 171044098
 
-/*Use master
+Use master
 Go
 if exists (select * from sysdatabases where name='YemekSepeti')
 		drop database YemekSepeti
@@ -263,17 +263,20 @@ Create Table Category (
 Go
 Create Table OrderStatus (
 	StatusID int identity (1, 1) NOT NULL,
+	StatusType tinyint NULL,
 	StatusDetail nvarchar (MAX) NULL,
 	LastUpdateTime datetime NULL,
 	CONSTRAINT PK_OrderStatus PRIMARY KEY CLUSTERED 
 	(
 		StatusID
-	)
+	),
+	CONSTRAINT CK_StatusType CHECK (StatusType between 1 and 4)
 )
 Go
 Create Table Food (
 	FoodID int identity (1, 1) NOT NULL,
 	CategoryIDF int,
+	RestaurantIDF int,
 	Price money,
 	FoodName nvarchar (50), 
 	FoodDetails nvarchar (MAX),
@@ -287,6 +290,12 @@ Create Table Food (
 		CategoryIDF
 	) REFERENCES dbo.Category (
 		CategoryID
+	),
+	CONSTRAINT FK_Food_Restaurant FOREIGN KEY 
+	(
+		RestaurantIDF
+	) REFERENCES dbo.Restaurant (
+		RestaurantID
 	)
 )
 Go
@@ -294,6 +303,7 @@ Create Table Review (
 	ReviewID int identity (1, 1) NOT NULL,
 	CustomerIDF int,
 	RestaurantIDF int,
+	OrderIDF int,
 	ReviewDate datetime, 
 	Comment nvarchar (MAX),
 	Speed float,
@@ -316,6 +326,12 @@ Create Table Review (
 		RestaurantIDF
 	) REFERENCES dbo.Restaurant (
 		RestaurantID
+	),
+	CONSTRAINT FK_Review_Order FOREIGN KEY 
+	(
+		OrderIDF
+	) REFERENCES dbo.Orders (
+		OrderID
 	)
 )
 Use YemekSepeti
@@ -382,11 +398,14 @@ Create Table Orders (
 	OrderDate datetime NULL,
 	TotalPrice money NULL ,
 	IsDelivered bit NULL,
+	DeliveryDate datetime,
+	IsRated bit NULL,
 	CustomerIDF int NULL ,
 	RestaurantIDF int NULL ,
 	AddressIDF int NULL ,
 	StatusIDF int NULL ,
 	PaymentTypeIDF int NULL ,
+	ReviewIDF int NULL,
 	CONSTRAINT PK_ActiveOrder PRIMARY KEY CLUSTERED 
 	(
 		OrderID
@@ -420,56 +439,8 @@ Create Table Orders (
 		PaymentTypeIDF
 	) REFERENCES dbo.PaymentType (
 		PaymentTypeID
-	)
-)
-Go
-Create Table OldOrder (
-	OrderID int NOT NULL,
-	OrderDate datetime NULL,
-	IsRated bit NULL,
-	TotalPrice money NULL ,
-	DeliveryDate datetime,
-	CustomerIDF int NULL ,
-	RestaurantIDF int NULL ,
-	AddressIDF int NULL ,
-	StatusIDF int NULL ,
-	PaymentTypeIDF int NULL ,
-	ReviewIDF int NULL,
-	CONSTRAINT PK_OldOrder PRIMARY KEY CLUSTERED 
-	(
-		OrderID
 	),
-	CONSTRAINT FK_OldOrder_Restaurant FOREIGN KEY 
-	(
-		RestaurantIDF
-	) REFERENCES dbo.Restaurant (
-		RestaurantID
-	),
-	CONSTRAINT FK_OldOrder_Address FOREIGN KEY 
-	(
-		AddressIDF
-	) REFERENCES dbo.Address (
-		AddressID
-	),
-	CONSTRAINT FK_OldOrder_Customer FOREIGN KEY 
-	(
-		CustomerIDF
-	) REFERENCES dbo.Customer (
-		CustomerID
-	),
-	CONSTRAINT FK_OldOrder_Status FOREIGN KEY 
-	(
-		StatusIDF
-	) REFERENCES dbo.OrderStatus (
-		StatusID
-	),
-	CONSTRAINT FK_OldOrder_PaymentType FOREIGN KEY 
-	(
-		PaymentTypeIDF
-	) REFERENCES dbo.PaymentType (
-		PaymentTypeID
-	),
-	CONSTRAINT FK_OldOrder_Review FOREIGN KEY 
+	CONSTRAINT FK_Order_Review FOREIGN KEY 
 	(
 		ReviewIDF
 	) REFERENCES dbo.Review (
@@ -518,4 +489,38 @@ Create Table OrderFood (
 		FoodID
 	)
 )
-Go*/
+Go
+Create Table FoodLog (
+	LogID int identity (1, 1) NOT NULL,
+	DeletedTime datetime NULL,
+	FoodName nvarchar(50) NULL,
+	FoodDetail nvarchar(MAX) NULL,
+	Price money NULL,
+	RestaurantName nvarchar(50) NULL,
+	
+	CONSTRAINT PK_FoodLog PRIMARY KEY CLUSTERED 
+	(
+		LogID
+	)
+)
+Go
+Create Table WalletLog (
+	LogID int identity (1, 1) NOT NULL,
+	LogTime datetime NULL,
+	OperationDetails nvarchar(MAX) NULL ,
+	OldBalance money NULL,
+	NewBalance money NULL,
+	WalletIDF int NULL,
+	
+	CONSTRAINT PK_WalletLog PRIMARY KEY CLUSTERED 
+	(
+		LogID
+	),
+	CONSTRAINT FK_Wallet_WalletLog FOREIGN KEY 
+	(
+		WalletIDF
+	) REFERENCES dbo.DigitalWallet (
+		WalletID
+	)
+)
+Go
