@@ -1,6 +1,6 @@
 --create tables
 -- 171044098
-
+/*
 Use master
 Go
 if exists (select * from sysdatabases where name='YemekSepeti')
@@ -107,9 +107,9 @@ Create Table Customer (
 	CustomerID int identity (1, 1) NOT NULL,
 	FirstName nvarchar (50),
 	LastName nvarchar (50),
-	BirthDate datetime NULL ,
+	BirthDate date NULL ,
 	Password nvarchar (MAX) NULL ,
-	RecorDate datetime NULL ,
+	RecordDate datetime NULL ,
 	EmailIDF int NULL ,
 	BasketIDF int NULL ,
 	WalletIDF int NULL ,
@@ -177,7 +177,7 @@ Create Table Restaurant (
 	MinDeliveryTime nvarchar (50) NULL ,
 	MinDeliveryPrice money NULL ,
 	IsOpen bit NULL,
-	AverageScore float NULL ,
+	AverageScore decimal(8,2) NULL ,
 	AddressIDF int NULL ,
 	PhoneNumberIDF int NULL ,
 	WorkingHoursIDF int NULL ,
@@ -303,7 +303,7 @@ Create Table Review (
 	ReviewID int identity (1, 1) NOT NULL,
 	CustomerIDF int,
 	RestaurantIDF int,
-	OrderIDF int,
+	OrderID int,
 	ReviewDate datetime, 
 	Comment nvarchar (MAX),
 	Speed float,
@@ -326,12 +326,6 @@ Create Table Review (
 		RestaurantIDF
 	) REFERENCES dbo.Restaurant (
 		RestaurantID
-	),
-	CONSTRAINT FK_Review_Order FOREIGN KEY 
-	(
-		OrderIDF
-	) REFERENCES dbo.Orders (
-		OrderID
 	)
 )
 Use YemekSepeti
@@ -400,41 +394,36 @@ Create Table Orders (
 	IsDelivered bit NULL,
 	DeliveryDate datetime,
 	IsRated bit NULL,
+	StatusDetails nvarchar(MAX) NULL,
+	LastUpdateTime datetime NULL,
 	CustomerIDF int NULL ,
 	RestaurantIDF int NULL ,
 	AddressIDF int NULL ,
-	StatusIDF int NULL ,
 	PaymentTypeIDF int NULL ,
 	ReviewIDF int NULL,
-	CONSTRAINT PK_ActiveOrder PRIMARY KEY CLUSTERED 
+	CONSTRAINT PK_Order PRIMARY KEY CLUSTERED 
 	(
 		OrderID
 	),
-	CONSTRAINT FK_ActiveOrder_Restaurant FOREIGN KEY 
+	CONSTRAINT FK_Order_Restaurant FOREIGN KEY 
 	(
 		RestaurantIDF
 	) REFERENCES dbo.Restaurant (
 		RestaurantID
 	),
-	CONSTRAINT FK_ActiveOrder_Address FOREIGN KEY 
+	CONSTRAINT FK_Order_Address FOREIGN KEY 
 	(
 		AddressIDF
 	) REFERENCES dbo.Address (
 		AddressID
 	),
-	CONSTRAINT FK_ActiveOrder_Customer FOREIGN KEY 
+	CONSTRAINT FK_Order_Customer FOREIGN KEY 
 	(
 		CustomerIDF
 	) REFERENCES dbo.Customer (
 		CustomerID
 	),
-	CONSTRAINT FK_ActiveOrder_Status FOREIGN KEY 
-	(
-		StatusIDF
-	) REFERENCES dbo.OrderStatus (
-		StatusID
-	),
-	CONSTRAINT FK_ActiveOrder_PaymentType FOREIGN KEY 
+	CONSTRAINT FK_Order_PaymentType FOREIGN KEY 
 	(
 		PaymentTypeIDF
 	) REFERENCES dbo.PaymentType (
@@ -522,5 +511,4 @@ Create Table WalletLog (
 	) REFERENCES dbo.DigitalWallet (
 		WalletID
 	)
-)
-Go
+)*/
