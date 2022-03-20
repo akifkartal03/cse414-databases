@@ -78,10 +78,10 @@ Create Table Basket (
 Go
 Create Table DigitalWallet (
 	WalletID int identity (1, 1) NOT NULL,
-	Balance money default '0',
+	Balance money default 0,
 	BillingAdressIDF int NULL ,
 	BillingMailIDF int NULL ,
-	MaximumLimit money default '5000' ,
+	MaximumLimit money default 5000 ,
 	LastLoadDate datetime NULL ,
 
 	CONSTRAINT PK_DigitalWallet PRIMARY KEY CLUSTERED 
@@ -137,7 +137,6 @@ Create Table Customer (
 	),
 	CONSTRAINT CK_Birthdate CHECK (BirthDate < getdate())
 )
-Use YemekSepeti
 Go
 
 Create Table CustomerAdress (
@@ -260,18 +259,7 @@ Create Table Category (
 		CategoryID
 	)
 )
-Go
-Create Table OrderStatus (
-	StatusID int identity (1, 1) NOT NULL,
-	StatusType tinyint NULL,
-	StatusDetail nvarchar (MAX) NULL,
-	LastUpdateTime datetime NULL,
-	CONSTRAINT PK_OrderStatus PRIMARY KEY CLUSTERED 
-	(
-		StatusID
-	),
-	CONSTRAINT CK_StatusType CHECK (StatusType between 1 and 4)
-)
+
 Go
 Create Table Food (
 	FoodID int identity (1, 1) NOT NULL,
@@ -309,7 +297,7 @@ Create Table Review (
 	Speed float,
 	Service float,
 	Taste float,
-	ScoreAverage float,
+	ScoreAverage as CAST((Speed + Service +Taste) / 3 AS DECIMAL(10,2)),
 	
 	CONSTRAINT PK_Review PRIMARY KEY CLUSTERED 
 	(
@@ -328,7 +316,6 @@ Create Table Review (
 		RestaurantID
 	)
 )
-Use YemekSepeti
 Go
 Create Table Campaign (
 	CampaignID int identity (1, 1) NOT NULL,
@@ -337,7 +324,8 @@ Create Table Campaign (
 	FinishDate datetime, 
 	CampaignDetails nvarchar (MAX),
 	CampaignImage nvarchar (MAX),
-	IsActive bit,
+	IsActive as (case when FinishDate < getdate() then 0
+				else 1 end),
 	
 	CONSTRAINT PK_Campaign PRIMARY KEY CLUSTERED 
 	(
@@ -352,7 +340,8 @@ Create Table Coupon (
 	CouponDetails nvarchar (MAX), 
 	StartDate datetime,
 	FinishDate datetime,
-	IsActive bit,
+	IsActive as (case when FinishDate < getdate() then 0
+				else 1 end),
 	DiscountAmount money,
 	MinBasketPrice money,
 	PaymentTypeIDF int,
@@ -390,16 +379,17 @@ Go
 Create Table Orders (
 	OrderID int identity (1, 1) NOT NULL,
 	OrderDate datetime NULL,
-	TotalPrice money NULL ,
-	IsDelivered bit NULL,
-	DeliveryDate datetime,
+	TotalPrice money NULL,
+	DeliveryDate datetime NULL,
+	IsDelivered as (case when DeliveryDate is null then 0
+				else 1 end),
 	IsRated bit NULL,
 	StatusDetails nvarchar(MAX) NULL,
 	LastUpdateTime datetime NULL,
-	CustomerIDF int NULL ,
-	RestaurantIDF int NULL ,
-	AddressIDF int NULL ,
-	PaymentTypeIDF int NULL ,
+	CustomerIDF int NULL,
+	RestaurantIDF int NULL,
+	AddressIDF int NULL,
+	PaymentTypeIDF int NULL,
 	ReviewIDF int NULL,
 	CONSTRAINT PK_Order PRIMARY KEY CLUSTERED 
 	(
@@ -442,7 +432,7 @@ Create Table BasketFood (
 	FoodIDF int NOT NULL,
 	Quantity float,
 	Price money,
-	Amount money
+	Amount as (Quantity * Price),
 	
 	CONSTRAINT FK_Basket_Food FOREIGN KEY 
 	(
@@ -463,7 +453,7 @@ Create Table OrderFood (
 	FoodIDF int NOT NULL,
 	Quantity float,
 	Price money,
-	Amount money
+	Amount as (Quantity * Price),
 	
 	CONSTRAINT FK_Order_Food FOREIGN KEY 
 	(

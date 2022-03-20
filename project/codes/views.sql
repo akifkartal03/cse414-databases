@@ -5,10 +5,10 @@ Use YemekSepeti
 Go
 --örnek view kullanımı
 -- BurgerKing restoranı için yapılan tüm yorumları view kullanarak getir
-select * from vm_Comment where YorumYapılanRestoran = 'BurgerKing'
+select AVG(OrtalamaPuan) as Score from vm_Comment where YorumYapılanRestoran = 'BurgerKing'
 
 -- adı akif olan müşteriyi view kullanarak getir
-select * from vm_Customer where Adı='Akif'
+select * from vm_Customer where Adı='Akif' 
 
 /*
 -- detaylı müsteri bilgisi getirme view'i
@@ -52,7 +52,8 @@ r.MinDeliveryTime+' '+'dk.' as ServisSüresi, r.MinDeliveryPrice as MinTutar,r.I
 w.HoursDetail as ÇalışmaSaatleri, t.CountryCode + ' ' +t.PhoneNumber as TelefonNumarası, a.AdressDetail as Adresi,
 (select Count(*) from Food f where f.RestaurantIDF = r.RestaurantID) as ToplamYemekSayısı,
 (select Count(*) from Review re where re.RestaurantIDF = r.RestaurantID) as ToplamYorumSayısı,
-(select Count(*) from FavouriteRestaurant fa where fa.RestaurantIDF = r.RestaurantID) as FavoriSeçilmeSayısı
+(select Count(*) from FavouriteRestaurant fa where fa.RestaurantIDF = r.RestaurantID) as FavoriSeçilmeSayısı,
+(select Count(*) from PaymentRestaurant py where py.RestaurantIDF = r.RestaurantID) as ToplamÖdemeTipiSayısı
 from Restaurant r 
 inner join WorkingHours w on w.HourID = r.WorkingHoursIDF
 inner join TelephoneNumber t on t.NumberID = r.PhoneNumberIDF
