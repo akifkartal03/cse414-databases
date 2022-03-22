@@ -34,13 +34,14 @@ after insert
 as
 declare @avgScore float, @resID int,@orderID int,@rewID int
 set @resID = (select RestaurantIDF from inserted)
-set @orderID = (select OrderID from inserted)
+set @orderID = (select OrderIDF from inserted)
 set @rewID = (select ReviewID from inserted)
 Select @avgScore = ((Service+Speed+Taste) / 3) from inserted 
 declare @totalAvg float = (select AverageScore from Restaurant where RestaurantID = @resID)
-declare @newAvg float = ((@totalAvg + @avgScore) / ((select Count(*) from Review where RestaurantIDF = @resID)))
+declare @totalCount int = (select Count(*) from Review where RestaurantIDF = @resID)
+declare @newAvg float = ((@totalAvg + @avgScore) / (case when  @totalCount = 0 then 1 else @totalCount end))
 update Restaurant set AverageScore = @newAvg where RestaurantID = @resID
-update Orders set ReviewIDF = @rewID where OrderID = @orderID
+update Orders set IsRated = 1 where OrderID = @orderID
 Go
 -- sepete yemek eklediğinde sepetin fiyatını güncelleme
 Create Trigger trg_BasketPriceUpdate
@@ -61,8 +62,8 @@ as
 declare @customerID int = (select CustomerIDF from inserted)
 declare @orderID int = (select OrderID from inserted)
 declare @basketID int = (select BasketIDF from Customer where CustomerID = @customerID)
-insert into OrderFood (OrderIDF,FoodIDF,Quantity,Price,Amount)
-     SELECT @orderID,FoodIDF,Quantity,Price,Amount
+insert into OrderFood (OrderIDF,FoodIDF,Quantity,Price)
+     SELECT @orderID,FoodIDF,Quantity,Price
      FROM BasketFood where BasketIDF = @basketID
 delete from BasketFood where BasketIDF = @basketID
 update Basket set TotalCost = 0, IsEmpty = 1 where BasketID = @basketID

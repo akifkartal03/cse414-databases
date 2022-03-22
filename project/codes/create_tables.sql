@@ -1,6 +1,6 @@
 --create tables
 -- 171044098
-/*
+
 Use master
 Go
 if exists (select * from sysdatabases where name='YemekSepeti')
@@ -287,11 +287,55 @@ Create Table Food (
 	)
 )
 Go
+Create Table Orders (
+	OrderID int identity (1, 1) NOT NULL,
+	OrderDate datetime NULL,
+	TotalPrice money NULL,
+	DeliveryDate datetime NULL,
+	IsDelivered as (case when DeliveryDate is null then 0
+				else 1 end),
+	IsRated bit NULL,
+	StatusDetails nvarchar(MAX) NULL,
+	LastUpdateTime datetime NULL,
+	CustomerIDF int NULL,
+	RestaurantIDF int NULL,
+	AddressIDF int NULL,
+	PaymentTypeIDF int NULL,
+	CONSTRAINT PK_Order PRIMARY KEY CLUSTERED 
+	(
+		OrderID
+	),
+	CONSTRAINT FK_Order_Restaurant FOREIGN KEY 
+	(
+		RestaurantIDF
+	) REFERENCES dbo.Restaurant (
+		RestaurantID
+	),
+	CONSTRAINT FK_Order_Address FOREIGN KEY 
+	(
+		AddressIDF
+	) REFERENCES dbo.Address (
+		AddressID
+	),
+	CONSTRAINT FK_Order_Customer FOREIGN KEY 
+	(
+		CustomerIDF
+	) REFERENCES dbo.Customer (
+		CustomerID
+	),
+	CONSTRAINT FK_Order_PaymentType FOREIGN KEY 
+	(
+		PaymentTypeIDF
+	) REFERENCES dbo.PaymentType (
+		PaymentTypeID
+	)
+)
+Go
 Create Table Review (
 	ReviewID int identity (1, 1) NOT NULL,
 	CustomerIDF int,
 	RestaurantIDF int,
-	OrderID int,
+	OrderIDF int,
 	ReviewDate datetime, 
 	Comment nvarchar (MAX),
 	Speed float,
@@ -314,6 +358,12 @@ Create Table Review (
 		RestaurantIDF
 	) REFERENCES dbo.Restaurant (
 		RestaurantID
+	),
+	CONSTRAINT FK_Review_Order FOREIGN KEY 
+	(
+		OrderIDF
+	) REFERENCES dbo.Orders (
+		OrderID
 	)
 )
 Go
@@ -376,63 +426,13 @@ Create Table CouponCustomer (
 	)
 )
 Go
-Create Table Orders (
-	OrderID int identity (1, 1) NOT NULL,
-	OrderDate datetime NULL,
-	TotalPrice money NULL,
-	DeliveryDate datetime NULL,
-	IsDelivered as (case when DeliveryDate is null then 0
-				else 1 end),
-	IsRated bit NULL,
-	StatusDetails nvarchar(MAX) NULL,
-	LastUpdateTime datetime NULL,
-	CustomerIDF int NULL,
-	RestaurantIDF int NULL,
-	AddressIDF int NULL,
-	PaymentTypeIDF int NULL,
-	ReviewIDF int NULL,
-	CONSTRAINT PK_Order PRIMARY KEY CLUSTERED 
-	(
-		OrderID
-	),
-	CONSTRAINT FK_Order_Restaurant FOREIGN KEY 
-	(
-		RestaurantIDF
-	) REFERENCES dbo.Restaurant (
-		RestaurantID
-	),
-	CONSTRAINT FK_Order_Address FOREIGN KEY 
-	(
-		AddressIDF
-	) REFERENCES dbo.Address (
-		AddressID
-	),
-	CONSTRAINT FK_Order_Customer FOREIGN KEY 
-	(
-		CustomerIDF
-	) REFERENCES dbo.Customer (
-		CustomerID
-	),
-	CONSTRAINT FK_Order_PaymentType FOREIGN KEY 
-	(
-		PaymentTypeIDF
-	) REFERENCES dbo.PaymentType (
-		PaymentTypeID
-	),
-	CONSTRAINT FK_Order_Review FOREIGN KEY 
-	(
-		ReviewIDF
-	) REFERENCES dbo.Review (
-		ReviewID
-	)
-)
-Go
+
 Create Table BasketFood (
 	BasketIDF int NOT NULL,
 	FoodIDF int NOT NULL,
 	Quantity float,
 	Price money,
-	Amount as (Quantity * Price),
+	Amount as cast(Quantity * Price as money),
 	
 	CONSTRAINT FK_Basket_Food FOREIGN KEY 
 	(
@@ -453,7 +453,7 @@ Create Table OrderFood (
 	FoodIDF int NOT NULL,
 	Quantity float,
 	Price money,
-	Amount as (Quantity * Price),
+	Amount as cast(Quantity * Price as money),
 	
 	CONSTRAINT FK_Order_Food FOREIGN KEY 
 	(
@@ -501,4 +501,4 @@ Create Table WalletLog (
 	) REFERENCES dbo.DigitalWallet (
 		WalletID
 	)
-)*/
+)

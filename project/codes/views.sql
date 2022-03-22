@@ -5,18 +5,18 @@ Use YemekSepeti
 Go
 --örnek view kullanımı
 -- BurgerKing restoranı için yapılan tüm yorumları view kullanarak getir
-select AVG(OrtalamaPuan) as Score from vm_Comment where YorumYapılanRestoran = 'BurgerKing'
+--select AVG(OrtalamaPuan) as Score from vm_Comment where YorumYapılanRestoran = 'BurgerKing'
 
 -- adı akif olan müşteriyi view kullanarak getir
-select * from vm_Customer where Adı='Akif' 
+--select * from vm_Customer where Adı='Akif' 
 
-/*
+
 -- detaylı müsteri bilgisi getirme view'i
 Create View vm_Customer
 as
 Select c.FirstName as Adı, c.LastName as Soyadı, YEAR(c.BirthDate) as DoğumTarihi,
 e.MailAddress as MailAdresi, b.TotalCost as SepetTutarı, d.MaximumLimit as CüzdanMaximumLimit,
-c.RecorDate as KayıtTarihi, (select Count(*) from Orders o where o.CustomerIDF = c.CustomerID) as SiparişSayısı, 
+c.RecordDate as KayıtTarihi, (select Count(*) from Orders o where o.CustomerIDF = c.CustomerID) as SiparişSayısı, 
 (select Count(*) from Review r where r.CustomerIDF = c.CustomerID) as ToplamYorumSayısı,
 (select Count(*) from CouponCustomer co where co.CustomerIDF = c.CustomerID) as KuponSayısı,
 (select Count(*) from FavouriteRestaurant fa where fa.CustomerIDF = c.CustomerID) as FavoriRestoranSayısı
@@ -33,9 +33,9 @@ Select o.OrderID as OrderNumarası,o.OrderDate as SiparişTarihi,o.TotalPrice as
 (Select Count(*) from OrderFood o_f where o_f.OrderIDF = o.OrderID) as YemekAdedi,
 c.FirstName+' '+c.LastName as SiparişiVerenKişi,a.AdressDetail as SiparişAdresi,
 r.RestaurantName as RestorantAdı,p.PaymentTypeName as ÖdemeTipi,o.IsDelivered as TeslimEdildimi,
-o.DeliveryDate as SonBilgiGirişZamanı, (CASE 
-		WHEN o.ReviewIDF is null THEN 'Yorum Yapılmadı!'
-        ELSE (select Comment from Review s where s.ReviewID = o.ReviewIDF) end) as SiparişYorumu
+o.LastUpdateTime as SonBilgiGirişZamanı, (CASE 
+		WHEN o.IsRated is null THEN 'Yorum Yapılmadı!'
+        ELSE (select Comment from Review s where s.OrderIDF = o.OrderID) end) as SiparişYorumu
 from Orders o 
 inner join Customer c on c.CustomerID = o.CustomerIDF
 inner join Restaurant r on r.RestaurantID = o.RestaurantIDF
@@ -83,5 +83,4 @@ r.ScoreAverage as OrtalamaPuan, o.OrderDate as SiparişTarihi
 from Review r
 inner join Customer c on c.CustomerID = r.CustomerIDF
 inner join Restaurant re on re.RestaurantID = r.RestaurantIDF
-inner join Orders o on o.OrderID = r.OrderID
-*/
+inner join Orders o on o.OrderID = r.OrderIDF
