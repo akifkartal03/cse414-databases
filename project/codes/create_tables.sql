@@ -367,44 +367,58 @@ Create Table Review (
 	)
 )
 Go
-Create Table Campaign (
-	CampaignID int identity (1, 1) NOT NULL,
-	CampaignName nvarchar (50),
-	StartDate  datetime,
-	FinishDate datetime, 
-	CampaignDetails nvarchar (MAX),
-	CampaignImage nvarchar (MAX),
-	IsActive as (case when FinishDate < getdate() then 0
-				else 1 end),
-	
-	CONSTRAINT PK_Campaign PRIMARY KEY CLUSTERED 
-	(
-		CampaignID
-	)
-)
-Go
-Create Table Coupon (
-	CouponID int identity (1, 1) NOT NULL,
-	CouponCode uniqueidentifier ,
-	CouponName  nvarchar (50),
-	CouponDetails nvarchar (MAX), 
+Create Table Offer (
+	ID int identity (1, 1) NOT NULL,
+	Name  nvarchar (50),
+	Details nvarchar (MAX), 
 	StartDate datetime,
 	FinishDate datetime,
 	IsActive as (case when FinishDate < getdate() then 0
 				else 1 end),
+
+	CONSTRAINT PK_Offer PRIMARY KEY CLUSTERED 
+	(
+		ID
+	)
+)
+Go
+Create Table Campaign (
+	IDF int NULL,
+	CampaignImage nvarchar (MAX),
+	RestaurantIDF int NULL,
+
+	CONSTRAINT FK_Restaurant_Camp FOREIGN KEY 
+	(
+		RestaurantIDF
+	) REFERENCES dbo.Restaurant (
+		RestaurantID
+	),
+	CONSTRAINT FK_Offer_Camp FOREIGN KEY 
+	(
+		IDF
+	) REFERENCES dbo.Offer (
+		ID
+	)
+)
+Go
+Create Table Coupon (
+	IDF int NULL,
+	CouponCode uniqueidentifier ,
 	DiscountAmount money,
 	MinBasketPrice money,
 	PaymentTypeIDF int,
 
-	CONSTRAINT PK_Coupon PRIMARY KEY CLUSTERED 
-	(
-		CouponID
-	),
 	CONSTRAINT FK_Coupon_PaymentType FOREIGN KEY 
 	(
 		PaymentTypeIDF
 	) REFERENCES dbo.PaymentType (
 		PaymentTypeID
+	),
+	CONSTRAINT FK_Coupon_Offer FOREIGN KEY 
+	(
+		IDF
+	) REFERENCES dbo.Offer (
+		ID
 	)
 )
 Go
@@ -422,7 +436,7 @@ Create Table CouponCustomer (
 	(
 		CouponIDF
 	) REFERENCES dbo.Coupon (
-		CouponID
+		OfferIDF
 	)
 )
 Go
