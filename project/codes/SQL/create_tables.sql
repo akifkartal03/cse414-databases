@@ -435,8 +435,8 @@ Create Table CouponCustomer (
 	CONSTRAINT FK_Coupon_Coupon_Customer FOREIGN KEY 
 	(
 		CouponIDF
-	) REFERENCES dbo.Coupon (
-		OfferIDF
+	) REFERENCES dbo.Offer (
+		ID
 	)
 )
 Go
