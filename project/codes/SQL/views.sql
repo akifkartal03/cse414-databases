@@ -29,7 +29,7 @@ Go
 -- detaylı siparis bilgisi(SonBilgiGirişZamanı değiştir)
 Create View vm_Order
 as
-Select o.OrderID as OrderNumarası,o.OrderDate as SiparişTarihi,o.TotalPrice as Fiyat, 
+Select o.OrderID as SiparişNumarası,o.OrderDate as SiparişTarihi,o.TotalPrice as Fiyat, 
 (Select Count(*) from OrderFood o_f where o_f.OrderIDF = o.OrderID) as YemekAdedi,
 c.FirstName+' '+c.LastName as SiparişiVerenKişi,a.AdressDetail as SiparişAdresi,
 r.RestaurantName as RestorantAdı,p.PaymentTypeName as ÖdemeTipi,o.IsDelivered as TeslimEdildimi,

@@ -164,13 +164,13 @@ Go
 
 -- add order
 insert Orders Values('2022-03-19 18:47:39.370',80,NULL,1,'Hazırlanıyor','2022-03-19 18:50:39.370',1,1,1,1)
-insert Orders Values('2022-04-19 13:55:39.370',60,'2022-04-19 14:15:39.370',1,'Hazırlanıyor','2022-03-19 18:50:39.370',2,2,2,2)
-insert Orders Values('2022-05-19 14:35:39.370',120,'2022-05-19 14:55:39.370',1,'Hazırlanıyor','2022-03-19 18:50:39.370',3,3,3,3)
+insert Orders Values('2022-04-19 13:55:39.370',60,'2022-04-19 14:15:39.370',1,'Teslim Edildi','2022-03-19 18:50:39.370',2,2,2,2)
+insert Orders Values('2022-05-19 14:35:39.370',120,'2022-05-19 14:55:39.370',1,'Teslim Edildi','2022-03-19 18:50:39.370',3,3,3,3)
 
 Go
 
 --add review
-insert Review Values(1,1,1,'2022-03-19 18:47:39.370','Burger hastasıyım kötü yapanı görmedim. Piyasadaki en uygun fiyata burger king veriyor. Teşekkürler umarım siz de diğerleri gibi fiyatları iki katına çıkarmazsınız.',9,9,10)
-insert Review Values(2,2,2,'2022-03-19 18:42:39.370','Teşekkürler. Uzun zaman sonra eksiksiz bir sipariş geldi.',5,5,5)
-insert Review Values(3,3,3,'2022-04-11 15:49:39.370','Burger hastasıyım kötü yapanı görmedim. Piyasadaki en uygun fiyata burger king veriyor. Teşekkürler umarım siz de diğerleri gibi fiyatları iki katına çıkarmazsınız.',8,8,8)
+insert Review Values(1,1,1,GETDATE(),'Burger hastasıyım kötü yapanı görmedim. Piyasadaki en uygun fiyata burger king veriyor. Teşekkürler umarım siz de diğerleri gibi fiyatları iki katına çıkarmazsınız.',9,9,10)
+insert Review Values(2,2,2,GETDATE(),'Teşekkürler. Uzun zaman sonra eksiksiz bir sipariş geldi.',5,5,5)
+insert Review Values(3,3,3,GETDATE(),'Burger hastasıyım kötü yapanı görmedim. Piyasadaki en uygun fiyata burger king veriyor. Teşekkürler umarım siz de diğerleri gibi fiyatları iki katına çıkarmazsınız.',8,8,8)
 
