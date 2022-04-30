@@ -38,7 +38,7 @@ namespace _171044098_CSE414
             SqlDataAdapter dataAdapter = new SqlDataAdapter("Select * from vm_Customer", connection);
             DataSet ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.DataSource = ds.Tables[0];
+            dataGridView2.DataSource = ds.Tables[0];
         }
 
         private void button3_Click(object sender, EventArgs e)
