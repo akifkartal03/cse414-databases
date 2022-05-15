@@ -1,6 +1,6 @@
-- trigger ve view'leri rapora ekle
+- trigger ve view'leri rapora ekle (okey)
 - sonra trigger ve view'ler için gui'de çalışma yap
 - sonra outer join sorgularını yaz
 - inheritance'ı guide göster
-- e-r diyagramı hocaya sorduktan sonra rapora ekle sql studiodan
+- e-r diyagramı hocaya sorduktan sonra rapora ekle sql studiodan(elle çizilbilir)
 

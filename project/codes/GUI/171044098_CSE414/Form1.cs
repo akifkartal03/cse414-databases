@@ -23,6 +23,9 @@ namespace _171044098_CSE414
             // TODO: This line of code loads data into the 'yemekSepetiDataSet.Address' table. You can move, or remove it, as needed.
             //this.addressTableAdapter.Fill(this.yemekSepetiDataSet.Address);
             dataGridView1.Width = this.Width - 21;
+            textBox1.Text = "select * from Customer c Left Outer Join Basket b on c.BasketIDF = b.BasketID";
+            textBox2.Text = "select * from Customer c Right Outer Join Basket b on c.BasketIDF = b.BasketID";
+            textBox3.Text = "select * from Customer c Full Outer Join Basket b on c.BasketIDF = b.BasketID";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -43,10 +46,26 @@ namespace _171044098_CSE414
 
         private void button3_Click(object sender, EventArgs e)
         {
-            SqlDataAdapter dataAdapter = new SqlDataAdapter("Select * from vm_Comment", connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(textBox1.Text, connection);
             DataSet ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.DataSource = ds.Tables[0];
+            dataGridView2.DataSource = ds.Tables[0];
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(textBox2.Text, connection);
+            DataSet ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView2.DataSource = ds.Tables[0];
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(textBox3.Text, connection);
+            DataSet ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView2.DataSource = ds.Tables[0];
         }
     }
 }
