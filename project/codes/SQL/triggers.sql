@@ -70,6 +70,6 @@ insert into OrderFood (OrderIDF,FoodIDF,Quantity,Price)
      SELECT @orderID,FoodIDF,Quantity,Price
      FROM BasketFood where BasketIDF = @basketID
 delete from BasketFood where BasketIDF = @basketID
+update Basket set TotalCost = 0, IsEmpty = 1 where BasketID = @basketID
 --insert sp here
 exec sp_orderTransaction @sender, @reciever, @total
-update Basket set TotalCost = 0, IsEmpty = 1 where BasketID = @basketID
