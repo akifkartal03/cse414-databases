@@ -61,10 +61,15 @@ after insert
 as
 declare @customerID int = (select CustomerIDF from inserted)
 declare @orderID int = (select OrderID from inserted)
+declare @restID int = (select RestaurantIDF from inserted)
 declare @basketID int = (select BasketIDF from Customer where CustomerID = @customerID)
+declare @total int = (select TotalPrice from inserted)
+declare @sender int = (select WalletIDF from Customer where CustomerID = @customerID)
+declare @reciever int = (select WalletIDF from Restaurant where RestaurantID = @restID )
 insert into OrderFood (OrderIDF,FoodIDF,Quantity,Price)
      SELECT @orderID,FoodIDF,Quantity,Price
      FROM BasketFood where BasketIDF = @basketID
 delete from BasketFood where BasketIDF = @basketID
 --insert sp here
+exec sp_orderTransaction @sender, @reciever, @total
 update Basket set TotalCost = 0, IsEmpty = 1 where BasketID = @basketID

@@ -25,7 +25,7 @@ End
 Else
 Begin
 	Update DigitalWallet set Balance = Balance - @amount where WalletID = @senderWalletId 
-	Update DigitalWallet set Balance = Balance + @amount where WalletID = @receiverWalletId
+	Update DigitalWallet set Balance = Balance + @amount, LastLoadDate = GETDATE() where WalletID = @receiverWalletId
 	Commit
 End
 
@@ -62,41 +62,33 @@ End
 
 
 
-
-
-create procedure sp_insertCustomerTransaction
+create procedure sp_insertReviewTransaction
 (
-	@FirstName nvarchar (50),
-	@LastName nvarchar (50),
-	@BirthDate date NULL ,
-	@Password nvarchar (MAX) NULL ,
-	@EmailIDF int NULL ,
-	@BasketIDF int NULL ,
-	@WalletIDF int NULL 
+	@CustomerIDF int,
+	@RestaurantIDF int,
+	@OrderIDF int,
+	@ReviewDate datetime, 
+	@Comment nvarchar (MAX),
+	@Speed float,
+	@Service float,
+	@Taste float
 )
 as
-Begin Transaction insertCustomer
-declare @tempWalletId int = 0 , @tempEmailId int = 0, @tempBasketId int = 0
-Select @tempWalletId = WalletIDF from Customer where WalletIDF = @WalletIDF
-Select @tempWalletId = WalletIDF from Restaurant where WalletIDF = @WalletIDF
-Select @tempBasketId = BasketIDF from Customer where BasketIDF = @BasketIDF
-Select @tempEmailId = EmailIDF from Customer where EmailIDF = @EmailIDF
-If @tempBasketId > 0 or @tempEmailId > 0 or @tempWalletId > 0
+Begin Transaction insertReview
+declare @tempId int = 0
+Select @tempId = OrderIDF from Review where OrderIDF = @OrderIDF
+If @tempId > 0
 Begin
-	print 'Daha önce kullanılmış email, hesap cüzdanı ve sepet bilgileri ile yeni müşteri oluşturulamaz!'
+	print 'Daha önce review yapılmış bir sipariş için tekrar review yapılamaz!'
 	RollBack
 End
 Else
 Begin
-	insert Customer Values(@FirstName,@LastName,@BirthDate,@Password,getdate(),@EmailIDF,@BasketIDF,@WalletIDF)
+	insert Review Values(@CustomerIDF,@RestaurantIDF,@OrderIDF,@ReviewDate,@Comment,@Speed,@Service,@Taste)
 	Commit
 End
 
 
-exec sp_insertCustomerTransaction 'Selin','Özdemir','1999-07-27','test1234',4,4,7
 
 
-declare @senderBalance int = 0
-Select @senderBalance = WalletIDF from Customer where WalletIDF = 5
-Select @senderBalance = WalletIDF from Restaurant where WalletIDF = 5
-select @senderBalance
+
