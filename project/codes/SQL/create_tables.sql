@@ -180,6 +180,7 @@ Create Table Restaurant (
 	AddressIDF int NULL ,
 	PhoneNumberIDF int NULL ,
 	WorkingHoursIDF int NULL ,
+	WalletIDF int NULL ,
 	CONSTRAINT PK_Restaurant PRIMARY KEY CLUSTERED 
 	(
 		RestaurantID
@@ -201,6 +202,12 @@ Create Table Restaurant (
 		WorkingHoursIDF
 	) REFERENCES dbo.WorkingHours (
 		HourID
+	),
+	CONSTRAINT FK_Restaurant_Wallet FOREIGN KEY 
+	(
+		WalletIDF
+	) REFERENCES dbo.DigitalWallet (
+		WalletID
 	)
 )
 Go
@@ -403,7 +410,7 @@ Create Table Campaign (
 Go
 Create Table Coupon (
 	IDF int NULL,
-	CouponCode uniqueidentifier ,
+	CouponCode uniqueidentifier,
 	DiscountAmount money,
 	MinBasketPrice money,
 	PaymentTypeIDF int,

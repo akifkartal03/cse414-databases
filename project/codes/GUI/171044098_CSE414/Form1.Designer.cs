@@ -40,6 +40,11 @@ namespace _171044098_CSE414
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button7 = new System.Windows.Forms.Button();
+            this.run_right = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
@@ -48,11 +53,9 @@ namespace _171044098_CSE414
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.button5 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.run_right = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.yemekSepetiDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addressBindingSource)).BeginInit();
@@ -62,6 +65,7 @@ namespace _171044098_CSE414
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -145,14 +149,61 @@ namespace _171044098_CSE414
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(932, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(430, 332);
+            this.groupBox3.Size = new System.Drawing.Size(430, 270);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Join Queries";
             // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(294, 219);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(119, 43);
+            this.button7.TabIndex = 6;
+            this.button7.Text = "Run Full";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // run_right
+            // 
+            this.run_right.Location = new System.Drawing.Point(150, 219);
+            this.run_right.Name = "run_right";
+            this.run_right.Size = new System.Drawing.Size(119, 43);
+            this.run_right.TabIndex = 5;
+            this.run_right.Text = "Run Right";
+            this.run_right.UseVisualStyleBackColor = true;
+            this.run_right.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(6, 156);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(418, 57);
+            this.textBox3.TabIndex = 4;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(6, 91);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(418, 59);
+            this.textBox2.TabIndex = 3;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(6, 23);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(418, 62);
+            this.textBox1.TabIndex = 2;
+            // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(6, 271);
+            this.button3.Location = new System.Drawing.Point(6, 219);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(119, 43);
             this.button3.TabIndex = 1;
@@ -236,58 +287,45 @@ namespace _171044098_CSE414
             this.button5.Text = "Verileri Getir";
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // groupBox6
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(6, 23);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(418, 66);
-            this.textBox1.TabIndex = 2;
+            this.groupBox6.BackColor = System.Drawing.Color.DeepPink;
+            this.groupBox6.Controls.Add(this.button8);
+            this.groupBox6.Controls.Add(this.button6);
+            this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.groupBox6.Location = new System.Drawing.Point(932, 288);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(430, 91);
+            this.groupBox6.TabIndex = 4;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Additional";
             // 
-            // textBox2
+            // button6
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(6, 105);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(418, 66);
-            this.textBox2.TabIndex = 3;
+            this.button6.Location = new System.Drawing.Point(30, 23);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(167, 46);
+            this.button6.TabIndex = 1;
+            this.button6.Text = "Verileri Getir";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click_1);
             // 
-            // textBox3
+            // button8
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(6, 186);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(418, 66);
-            this.textBox3.TabIndex = 4;
-            // 
-            // run_right
-            // 
-            this.run_right.Location = new System.Drawing.Point(153, 271);
-            this.run_right.Name = "run_right";
-            this.run_right.Size = new System.Drawing.Size(119, 43);
-            this.run_right.TabIndex = 5;
-            this.run_right.Text = "Run Right";
-            this.run_right.UseVisualStyleBackColor = true;
-            this.run_right.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(294, 271);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(119, 43);
-            this.button7.TabIndex = 6;
-            this.button7.Text = "Run Full";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.button8.Location = new System.Drawing.Point(231, 23);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(167, 46);
+            this.button8.TabIndex = 2;
+            this.button8.Text = "Verileri Getir";
+            this.button8.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1374, 721);
+            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.label2);
@@ -313,6 +351,7 @@ namespace _171044098_CSE414
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -342,6 +381,9 @@ namespace _171044098_CSE414
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button run_right;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button6;
     }
 }
 

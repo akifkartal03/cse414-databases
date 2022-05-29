@@ -1,0 +1,6 @@
+önce yemeksepeti database'ini sil komple
+sonra create_tables sorgularını çalıştır.
+sonra triggers sorgularını çalıştır.
+sonra insert sorgularını çalıştır.
+sonra view sorgularını çalıştır.
+sonra transaction sorgularını çalışıtır.

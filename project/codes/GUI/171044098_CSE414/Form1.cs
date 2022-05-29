@@ -67,5 +67,13 @@ namespace _171044098_CSE414
             dataAdapter.Fill(ds);
             dataGridView2.DataSource = ds.Tables[0];
         }
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("Exec sp_test", connection);
+            DataSet ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.DataSource = ds.Tables[0];
+        }
     }
 }

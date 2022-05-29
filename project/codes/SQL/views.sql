@@ -49,7 +49,7 @@ Create View vm_Restaurant
 as
 Select r.RestaurantName as RestoranAdı,r.AverageScore as RestoranPuanı,
 r.MinDeliveryTime+' '+'dk.' as ServisSüresi, r.MinDeliveryPrice as MinTutar,r.IsOpen as RestoranAçıkmı,
-w.HoursDetail as ÇalışmaSaatleri, t.CountryCode + ' ' +t.PhoneNumber as TelefonNumarası, a.AdressDetail as Adresi,
+w.HoursDetail as ÇalışmaSaatleri, t.CountryCode + ' ' +t.PhoneNumber as TelefonNumarası, a.AdressDetail as Adresi,c.Balance as HesapBakiyesi,
 (select Count(*) from Food f where f.RestaurantIDF = r.RestaurantID) as ToplamYemekSayısı,
 (select Count(*) from Review re where re.RestaurantIDF = r.RestaurantID) as ToplamYorumSayısı,
 (select Count(*) from FavouriteRestaurant fa where fa.RestaurantIDF = r.RestaurantID) as FavoriSeçilmeSayısı,
@@ -58,6 +58,7 @@ from Restaurant r
 inner join WorkingHours w on w.HourID = r.WorkingHoursIDF
 inner join TelephoneNumber t on t.NumberID = r.PhoneNumberIDF
 inner join Address a on a.AddressID= r.AddressIDF
+inner join DigitalWallet c on c.WalletID= r.WalletIDF
 
 Go 
 

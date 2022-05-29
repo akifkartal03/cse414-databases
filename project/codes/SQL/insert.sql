@@ -48,6 +48,11 @@ insert Basket
 Values('1',0),
 ('1',0),
 ('1',0),
+('1',0),
+('1',0),
+('1',0),
+('1',0),
+('1',0),
 ('1',0)
 Go
 
@@ -56,7 +61,12 @@ Go
 insert DigitalWallet
 Values(150,1,1,3000,getdate()),
 (250,2,2,3000,getdate()),
-(500,3,3,3000,getdate())
+(500,3,3,3000,getdate()),
+(0,4,4,3000,NULL),
+(0,4,4,3000,NULL),
+(0,4,4,3000,NULL),
+(0,4,4,3000,NULL),
+(0,4,4,3000,NULL)
 
 Go
 
@@ -91,9 +101,9 @@ Go
 --add restaurant
 
 insert Restaurant
-Values('Burger King','https://burgerking.gif',30,50,1,0,4,4,1),
-('Dominos','https://dominos.gif',40,60,1,0,4,4,2),
-('KFC','https://kfc.gif',50,40,1,0,4,4,3)
+Values('Burger King','https://burgerking.gif',30,50,1,0,4,4,1,4),
+('Dominos','https://dominos.gif',40,60,1,0,4,4,2,5),
+('KFC','https://kfc.gif',50,40,1,0,4,4,3,6)
 
 Go
 
@@ -175,3 +185,13 @@ insert Review Values(1,1,1,GETDATE(),'Burger hastasıyım kötü yapanı görmed
 insert Review Values(2,2,2,GETDATE(),'Teşekkürler. Uzun zaman sonra eksiksiz bir sipariş geldi.',5,5,5)
 insert Review Values(3,3,3,GETDATE(),'Burger hastasıyım kötü yapanı görmedim. Piyasadaki en uygun fiyata burger king veriyor. Teşekkürler umarım siz de diğerleri gibi fiyatları iki katına çıkarmazsınız.',8,8,8)
 
+insert Offer Values('Haziran20 İndirimi','Haziran20 kupon koduyla sepette 20 Tl indirim','2022-06-01 13:00:00.370','2022-07-01 13:55:39.370')
+insert Offer Values('3 Al 2 Öde','3 Burger 2 Burger Fiyatına','2022-06-01 13:00:00.370','2022-07-01 13:55:39.370')
+
+insert Campaign Values(2,'image',1)
+insert Coupon Values(1,'Haziran20',20,40,7)
+
+
+insert CouponCustomer Values(1,1)
+insert CouponCustomer Values(2,1)
+insert CouponCustomer Values(3,1)
