@@ -117,7 +117,8 @@ Values('MetropolCard',0),
 ('Multinet',0),
 ('Cash',0),
 ('Credit Card',0),
-('Pay with Maximum Mobil',1)
+('Pay with Maximum Mobil',1),
+('Digital Wallet',1)
 Go
 
 --add PaymentRestaurant
