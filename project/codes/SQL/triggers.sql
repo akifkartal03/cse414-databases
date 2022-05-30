@@ -3,7 +3,7 @@
 
 Use YemekSepeti
 Go
--- wallet log triggeri(çalışıyor sıkıntı yok)
+-- wallet log triggeri
 Create Trigger trg_LogWallet
 on DigitalWallet
 after update
@@ -16,8 +16,9 @@ declare @operation nvarchar(max) = (CASE
 		WHEN @newBalance > @oldBalance THEN 'Para Yükleme İşlemi Yapıldı.'
         ELSE 'Bakiye Değişmedi' end)
 Insert WalletLog values(GETDATE(),@operation,@oldBalance,@newBalance,@walletID)
+
 Go
--- food delete triggeri(çalışıyor sıkıntı yok)
+-- food delete triggeri
 Create Trigger trg_LogFood
 on Food
 after delete
@@ -27,7 +28,7 @@ Select @foodName = FoodName, @foodDetail = FoodDetails, @foodPrice = Price from 
 declare @resName nvarchar(50) = (select RestaurantName from Restaurant where RestaurantID = (select RestaurantIDF from deleted)) 
 Insert FoodLog values(GETDATE(),@foodName,@foodDetail,@foodPrice,@resName)
 Go
--- review yapıldığında average score güncellemesi(çalışıyor sıkıntı yok)
+-- review yapıldığında average score güncellemesi
 Create Trigger trg_ReviewAverage
 on Review
 after insert
@@ -54,7 +55,6 @@ update Basket set TotalCost = TotalCost + @amount, IsEmpty = 0 where BasketID = 
 Go
 -- sipariş verildikten sonra sepetteki yemeklerin sipariş yemek tablosuna kaydedilmesi 
 -- ve yemeklerin sepetten silinmesi
---(çalışıyor sıkıntı yok)
 Create Trigger trg_OrderFood
 on Orders
 after insert

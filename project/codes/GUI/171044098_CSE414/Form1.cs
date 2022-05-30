@@ -263,18 +263,18 @@ namespace _171044098_CSE414
         private void button9_Click(object sender, EventArgs e)
         {
             label1.Text = "Siparişe yorum yapmadan önce ortalama restaurant puanı";
-            SqlDataAdapter dataAdapter = new SqlDataAdapter("select * from Customer", connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("select * from Restaurant where RestaurantID = 1", connection);
             DataSet ds = new DataSet();
             dataAdapter.Fill(ds);
             dataGridView1.DataSource = ds.Tables[0];
 
             connection.Open();
-            SqlCommand kayitEkle = new SqlCommand(textBox13.Text, connection);
+            SqlCommand kayitEkle = new SqlCommand(textBox5.Text, connection);
             kayitEkle.ExecuteNonQuery();
             connection.Close();
 
             label2.Text = "Siparişe yorum yaptıkdan sonra ortalama restaurant puanı";
-            dataAdapter = new SqlDataAdapter("select * from Customer", connection);
+            dataAdapter = new SqlDataAdapter("select * from Restaurant where RestaurantID = 1", connection);
             ds = new DataSet();
             dataAdapter.Fill(ds);
             dataGridView2.DataSource = ds.Tables[0];
@@ -283,18 +283,18 @@ namespace _171044098_CSE414
         private void button10_Click(object sender, EventArgs e)
         {
             label1.Text = "Sepete yemek eklemeden önce sepetin toplam fiyatı";
-            SqlDataAdapter dataAdapter = new SqlDataAdapter("select * from Customer", connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("select * from Basket where BasketID = 1", connection);
             DataSet ds = new DataSet();
             dataAdapter.Fill(ds);
             dataGridView1.DataSource = ds.Tables[0];
 
             connection.Open();
-            SqlCommand kayitEkle = new SqlCommand(textBox13.Text, connection);
+            SqlCommand kayitEkle = new SqlCommand(textBox6.Text, connection);
             kayitEkle.ExecuteNonQuery();
             connection.Close();
 
             label2.Text = "Sepete yemek ekledikten sonra sepetin toplam fiyatı";
-            dataAdapter = new SqlDataAdapter("select * from Customer", connection);
+            dataAdapter = new SqlDataAdapter("select * from Basket where BasketID = 1", connection);
             ds = new DataSet();
             dataAdapter.Fill(ds);
             dataGridView2.DataSource = ds.Tables[0];
@@ -303,18 +303,18 @@ namespace _171044098_CSE414
         private void button11_Click(object sender, EventArgs e)
         {
             label1.Text = "Yemek tablosundan bir yemeği silmeden önce FoodLog Tablosu";
-            SqlDataAdapter dataAdapter = new SqlDataAdapter("select * from Customer", connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("select * from FoodLog", connection);
             DataSet ds = new DataSet();
             dataAdapter.Fill(ds);
             dataGridView1.DataSource = ds.Tables[0];
 
             connection.Open();
-            SqlCommand kayitEkle = new SqlCommand(textBox13.Text, connection);
+            SqlCommand kayitEkle = new SqlCommand(textBox7.Text, connection);
             kayitEkle.ExecuteNonQuery();
             connection.Close();
 
             label2.Text = "Yemek tablosundan bir yemeği sildikten(kaldırdıktan) sonra FoodLog Tablosu";
-            dataAdapter = new SqlDataAdapter("select * from Customer", connection);
+            dataAdapter = new SqlDataAdapter("select * from FoodLog", connection);
             ds = new DataSet();
             dataAdapter.Fill(ds);
             dataGridView2.DataSource = ds.Tables[0];
@@ -323,18 +323,18 @@ namespace _171044098_CSE414
         private void button12_Click(object sender, EventArgs e)
         {
             label1.Text = "Sipariş vermeden önce sepetin durumu";
-            SqlDataAdapter dataAdapter = new SqlDataAdapter("select * from Customer", connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("select * from Basket where BasketID = 4", connection);
             DataSet ds = new DataSet();
             dataAdapter.Fill(ds);
             dataGridView1.DataSource = ds.Tables[0];
 
             connection.Open();
-            SqlCommand kayitEkle = new SqlCommand(textBox13.Text, connection);
+            SqlCommand kayitEkle = new SqlCommand(textBox8.Text, connection);
             kayitEkle.ExecuteNonQuery();
             connection.Close();
 
             label2.Text = "Sipariş verdikten sonra sepetin durumu";
-            dataAdapter = new SqlDataAdapter("select * from Customer", connection);
+            dataAdapter = new SqlDataAdapter("select * from Basket where BasketID = 4", connection);
             ds = new DataSet();
             dataAdapter.Fill(ds);
             dataGridView2.DataSource = ds.Tables[0];

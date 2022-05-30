@@ -26,7 +26,8 @@ inner join Basket b on b.BasketID = c.BasketIDF
 inner join DigitalWallet d on d.WalletID = c.WalletIDF
 
 Go
--- detaylı siparis bilgisi(SonBilgiGirişZamanı değiştir)
+
+-- detaylı siparis bilgisi
 Create View vm_Order
 as
 Select o.OrderID as SiparişNumarası,o.OrderDate as SiparişTarihi,o.TotalPrice as Fiyat, 
