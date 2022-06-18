@@ -1,16 +1,6 @@
 ﻿--views
 --171044098
 
-Use YemekSepeti
-Go
---örnek view kullanımı
--- BurgerKing restoranı için yapılan tüm yorumları view kullanarak getir
---select AVG(OrtalamaPuan) as Score from vm_Comment where YorumYapılanRestoran = 'BurgerKing'
-
--- adı akif olan müşteriyi view kullanarak getir
---select * from vm_Customer where Adı='Akif' 
-
-
 -- detaylı müsteri bilgisi getirme view'i
 Create View vm_Customer
 as

@@ -120,7 +120,7 @@ namespace _171044098_CSE414
             dataGridView1.DataSource = ds.Tables[0];
 
             label2.Text = "View ve inner join kullanılarak genişletilmiş Customer tablosu(view'i)";
-            dataAdapter = new SqlDataAdapter("Select * from vm_Customer", connection);
+            dataAdapter = new SqlDataAdapter(textBox15.Text, connection);
             ds = new DataSet();
             dataAdapter.Fill(ds);
             dataGridView2.DataSource = ds.Tables[0];
@@ -343,10 +343,15 @@ namespace _171044098_CSE414
         private void button8_Click(object sender, EventArgs e)
         {
             label1.Text = "Sipariş vermeden önce Customer sepet bilgileri";
-            SqlDataAdapter dataAdapter = new SqlDataAdapter("Select * from Basket where BasketID = 4", connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(textBox14.Text, connection);
             DataSet ds = new DataSet();
             dataAdapter.Fill(ds);
             dataGridView1.DataSource = ds.Tables[0];
+        }
+
+        private void textBox10_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

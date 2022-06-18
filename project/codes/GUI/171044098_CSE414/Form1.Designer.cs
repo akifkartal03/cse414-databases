@@ -79,6 +79,8 @@ namespace _171044098_CSE414
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.button6 = new System.Windows.Forms.Button();
+            this.textBox14 = new System.Windows.Forms.TextBox();
+            this.textBox15 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.yemekSepetiDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addressBindingSource)).BeginInit();
@@ -159,7 +161,7 @@ namespace _171044098_CSE414
             // 
             // textBox7
             // 
-            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox7.Location = new System.Drawing.Point(206, 129);
             this.textBox7.Multiline = true;
             this.textBox7.Name = "textBox7";
@@ -169,7 +171,7 @@ namespace _171044098_CSE414
             // 
             // textBox6
             // 
-            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox6.Location = new System.Drawing.Point(206, 97);
             this.textBox6.Multiline = true;
             this.textBox6.Name = "textBox6";
@@ -259,28 +261,29 @@ namespace _171044098_CSE414
             // textBox10
             // 
             this.textBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox10.Location = new System.Drawing.Point(122, 116);
+            this.textBox10.Location = new System.Drawing.Point(110, 105);
             this.textBox10.Multiline = true;
             this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(276, 57);
+            this.textBox10.Size = new System.Drawing.Size(288, 68);
             this.textBox10.TabIndex = 8;
             this.textBox10.Text = "select Name,StartDate,FinishDate,IsActive,CampaignImage,RestaurantIDF from Offer " +
     "o, Campaign c where c.IDF = o.ID";
+            this.textBox10.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
             // 
             // textBox9
             // 
-            this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox9.Location = new System.Drawing.Point(122, 39);
+            this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox9.Location = new System.Drawing.Point(110, 39);
             this.textBox9.Multiline = true;
             this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(276, 52);
+            this.textBox9.Size = new System.Drawing.Size(288, 60);
             this.textBox9.TabIndex = 7;
             this.textBox9.Text = "select Name,StartDate,FinishDate,IsActive,CouponCode from Offer o, Coupon c where" +
     " c.IDF = o.ID";
             // 
             // button17
             // 
-            this.button17.Location = new System.Drawing.Point(21, 116);
+            this.button17.Location = new System.Drawing.Point(6, 116);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(95, 46);
             this.button17.TabIndex = 2;
@@ -290,7 +293,7 @@ namespace _171044098_CSE414
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(21, 39);
+            this.button2.Location = new System.Drawing.Point(9, 39);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(95, 46);
             this.button2.TabIndex = 1;
@@ -411,6 +414,7 @@ namespace _171044098_CSE414
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.Color.DeepPink;
+            this.groupBox4.Controls.Add(this.textBox15);
             this.groupBox4.Controls.Add(this.button16);
             this.groupBox4.Controls.Add(this.button15);
             this.groupBox4.Controls.Add(this.button14);
@@ -426,7 +430,7 @@ namespace _171044098_CSE414
             // 
             // button16
             // 
-            this.button16.Location = new System.Drawing.Point(313, 42);
+            this.button16.Location = new System.Drawing.Point(351, 72);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(121, 46);
             this.button16.TabIndex = 5;
@@ -436,29 +440,29 @@ namespace _171044098_CSE414
             // 
             // button15
             // 
-            this.button15.Location = new System.Drawing.Point(143, 20);
+            this.button15.Location = new System.Drawing.Point(351, 23);
             this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(135, 46);
+            this.button15.Size = new System.Drawing.Size(121, 46);
             this.button15.TabIndex = 4;
-            this.button15.Text = "vm_Max40Food";
+            this.button15.Text = "vm_Restaurant";
             this.button15.UseVisualStyleBackColor = true;
             this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
             // button14
             // 
-            this.button14.Location = new System.Drawing.Point(143, 72);
+            this.button14.Location = new System.Drawing.Point(217, 72);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(135, 46);
+            this.button14.Size = new System.Drawing.Size(128, 46);
             this.button14.TabIndex = 3;
-            this.button14.Text = "vm_Restaurant";
+            this.button14.Text = "vm_Max40Food";
             this.button14.UseVisualStyleBackColor = true;
             this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
             // button13
             // 
-            this.button13.Location = new System.Drawing.Point(6, 69);
+            this.button13.Location = new System.Drawing.Point(217, 23);
             this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(118, 46);
+            this.button13.Size = new System.Drawing.Size(128, 46);
             this.button13.TabIndex = 2;
             this.button13.Text = "vm_Order";
             this.button13.UseVisualStyleBackColor = true;
@@ -466,7 +470,7 @@ namespace _171044098_CSE414
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(6, 23);
+            this.button4.Location = new System.Drawing.Point(42, 75);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(118, 40);
             this.button4.TabIndex = 1;
@@ -477,6 +481,7 @@ namespace _171044098_CSE414
             // groupBox5
             // 
             this.groupBox5.BackColor = System.Drawing.Color.DeepPink;
+            this.groupBox5.Controls.Add(this.textBox14);
             this.groupBox5.Controls.Add(this.button8);
             this.groupBox5.Controls.Add(this.label5);
             this.groupBox5.Controls.Add(this.label4);
@@ -550,12 +555,12 @@ namespace _171044098_CSE414
             // textBox11
             // 
             this.textBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox11.Location = new System.Drawing.Point(212, 22);
+            this.textBox11.Location = new System.Drawing.Point(212, 17);
             this.textBox11.Multiline = true;
             this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(200, 37);
+            this.textBox11.Size = new System.Drawing.Size(200, 21);
             this.textBox11.TabIndex = 8;
-            this.textBox11.Text = "insert BasketFood Values (4,2,1,80)";
+            this.textBox11.Text = " insert BasketFood Values (4,2,1,80)";
             // 
             // button18
             // 
@@ -611,6 +616,26 @@ namespace _171044098_CSE414
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click_1);
             // 
+            // textBox14
+            // 
+            this.textBox14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox14.Location = new System.Drawing.Point(212, 41);
+            this.textBox14.Multiline = true;
+            this.textBox14.Name = "textBox14";
+            this.textBox14.Size = new System.Drawing.Size(200, 21);
+            this.textBox14.TabIndex = 14;
+            this.textBox14.Text = "Select * from Basket where BasketID = 4";
+            // 
+            // textBox15
+            // 
+            this.textBox15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox15.Location = new System.Drawing.Point(10, 29);
+            this.textBox15.Multiline = true;
+            this.textBox15.Name = "textBox15";
+            this.textBox15.Size = new System.Drawing.Size(198, 34);
+            this.textBox15.TabIndex = 15;
+            this.textBox15.Text = "Select * from vm_Customer";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -643,6 +668,7 @@ namespace _171044098_CSE414
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
@@ -702,6 +728,8 @@ namespace _171044098_CSE414
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.TextBox textBox14;
+        private System.Windows.Forms.TextBox textBox15;
     }
 }
 

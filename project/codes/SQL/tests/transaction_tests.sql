@@ -24,3 +24,5 @@ select * from Orders
 select * from Customer c Left Outer Join Email e on c.EmailIDF = e.MailID
 select * from Customer c Right Outer Join Email e on c.EmailIDF = e.MailID
 select * from Customer c Full Outer Join Email e on c.EmailIDF = e.MailID
+
+select * from Customer c inner Join Email e on c.EmailIDF = e.MailID
