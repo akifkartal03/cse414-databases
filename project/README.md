@@ -2,10 +2,6 @@
 
 ## YemekSepeti Database Management System
 
-<p align="center">
-  <img width="700" height="120" src="https://i.ibb.co/dbTBw61/yemek.png">
-</p>
-
 ### Brief Description
 
 In this project, I have tried to make simple dbms for yemeksepeti platform. Also, I connected it with C# Windows Forms project.
@@ -21,10 +17,10 @@ In order to make this project following tools and technologies have been used.
 
 In this project we have created;
 
-- 25 Tables
+- 25 Table
 - 30 Relation
-- 5 Triggers
-- 5 Views
+- 5 Trigger
+- 5 View
 - Left, Right, Full, Inner Joins
 - 3 Transaction
 - Inheritance
