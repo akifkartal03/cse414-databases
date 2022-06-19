@@ -1,0 +1,15 @@
+D:\GTU\4.yıl-2.donem\Database\hwks_project\project\codes\GUI\171044098_CSE414\bin\Debug\171044098_CSE414.exe.config
+D:\GTU\4.yıl-2.donem\Database\hwks_project\project\codes\GUI\171044098_CSE414\bin\Debug\171044098_CSE414.exe
+D:\GTU\4.yıl-2.donem\Database\hwks_project\project\codes\GUI\171044098_CSE414\bin\Debug\171044098_CSE414.pdb
+D:\GTU\4.yıl-2.donem\Database\hwks_project\project\codes\GUI\171044098_CSE414\obj\Debug\171044098_CSE414.csproj.AssemblyReference.cache
+D:\GTU\4.yıl-2.donem\Database\hwks_project\project\codes\GUI\171044098_CSE414\obj\Debug\_171044098_CSE414.Form1.resources
+D:\GTU\4.yıl-2.donem\Database\hwks_project\project\codes\GUI\171044098_CSE414\obj\Debug\_171044098_CSE414.Properties.Resources.resources
+D:\GTU\4.yıl-2.donem\Database\hwks_project\project\codes\GUI\171044098_CSE414\obj\Debug\171044098_CSE414.csproj.GenerateResource.cache
+D:\GTU\4.yıl-2.donem\Database\hwks_project\project\codes\GUI\171044098_CSE414\obj\Debug\171044098_CSE414.csproj.CoreCompileInputs.cache
+D:\GTU\4.yıl-2.donem\Database\hwks_project\project\codes\GUI\171044098_CSE414\obj\Debug\171044098_CSE414.exe
+D:\GTU\4.yıl-2.donem\Database\hwks_project\project\codes\GUI\171044098_CSE414\obj\Debug\171044098_CSE414.pdb
+D:\GTU\4.yıl-2.donem\Database\hwks_project\project\codes\GUI\171044098_CSE414\obj\Debug\_171044098_CSE414.Form2.resources
+D:\GTU\4.yıl-2.donem\Database\hwks_project\project\codes\GUI\171044098_CSE414\obj\Debug\_171044098_CSE414.Form3.resources
+D:\GTU\4.yıl-2.donem\Database\hwks_project\project\codes\GUI\171044098_CSE414\obj\Debug\_171044098_CSE414.Form4.resources
+D:\GTU\4.yıl-2.donem\Database\hwks_project\project\codes\GUI\171044098_CSE414\obj\Debug\_171044098_CSE414.Form5.resources
+D:\GTU\4.yıl-2.donem\Database\hwks_project\project\codes\GUI\171044098_CSE414\obj\Debug\_171044098_CSE414.Form6.resources

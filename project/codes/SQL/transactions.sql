@@ -5,7 +5,7 @@
 -- 2) müşteri insert edilirken daha önce kullanılan bir sepet, email ve dijital cüzdan verilemez.
 
 -- 3) review yaparken  daha önce review yapılan bir siparişe review yapılamaz.
-
+	
 
 create procedure sp_orderTransaction
 (
